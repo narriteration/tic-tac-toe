@@ -1,8 +1,55 @@
+
 #board {
   margin-top: 10px;
 }
+
 
 .box {
   border: 1px solid black;
   height: 150px;
 }
+
+div.col-xs-4 {
+    width:50px;
+    height:50px;
+    border:1px solid #555;
+    cursor:pointer;
+
+.cross:before {
+    content:"x";
+    color:lightblue;
+    }
+
+.circle:before {
+    content:"o";
+    color:pink;
+    }
+  }
+
+/* BELOW IS REFERENCE CODE
+
+table {
+  border-collapse:collapse;
+  width:150px;
+  margin:0 auto;
+  td {
+    width:50px;
+    height:50px;
+    border:1px solid #555;
+    cursor:pointer;
+    &:before {
+      font-size:1.5em;
+      line-height:1;
+    }
+    &.cross:before {
+      content:"x";
+      color:lightblue;
+    }
+    &.circle:before {
+      content:"o";
+      color:pink;
+    }
+  }
+
+  
+*/
