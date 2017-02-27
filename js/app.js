@@ -1,26 +1,4 @@
-/*
-// wait for the DOM to finish loading
-$(document).ready(function() {
-  // all code to manipulate the DOM
-  // goes inside this function
 
-    // print to console that app.js is connected successfully
-    console.log("sanity check: app.js is connected! phew.");
-
-    // GET all divs with the class of col-xs-4 and set the inner HTML to "BLANK"
-    $(  "div[class='col-xs-4 box']"  ).html("BLANK")
-    console.log("inner html of ALL boxes on playing board = blank");
-
-
-    // ALERT the player that the game is ready to begin
-    alert("Click on any blank box to start your game.");
-    console.log("User has been prompted to click anywhere to start the game");
-
-    // LISTEN for a click to happen on any of the divs with class col-xs-4; and on CLICK, do something
-    $(  "div[class='col-xs-4 box']"  ).on('click').addClass('.isClicked');
-
-    $('.isClicked').html("I've been clicked!");
-*/
 
     $(document).ready(function() {
 
@@ -29,8 +7,8 @@ $(document).ready(function() {
       var messages = $('.messages');
       var turn = $('.turn'); //
       var anyBox = $('.col-xs-4');
-/*
 
+/*
 NOTES TO SELF:
 
 replaced $('table') with $('#board') ?
@@ -39,9 +17,8 @@ replaced turn with isTurn
 replaced table with board
 replaced $('td') with $('.col-cs-4')
 created new variable to be able to select individual boxes (var = anyBox)
-
-
 */
+
       displayNextPlayer(turn, player);
 
 // THIS CHUNK OF CODE CONTROLS WHAT HAPPENS ON CLICK OF ANY BOX ON THE GAME BOARD
@@ -60,7 +37,7 @@ created new variable to be able to select individual boxes (var = anyBox)
                 displayNextPlayer(turn, player); // and run the function "displayNextPlayer", passing in the turn and player variables TODO: is this the right translation?
             }
         } else { // ELSE (if state === true to begin with), then do the following:
-          messages.html('This box is already checked.'); // on the messages object, set the (inner) HTML to the string specified in the parenthesis
+          messages.html('Sorry charlie, this box is already played.'); // on the messages object, set the (inner) HTML to the string specified in the parenthesis
         }
 
       });
@@ -69,8 +46,8 @@ created new variable to be able to select individual boxes (var = anyBox)
 // THIS CHUNK OF CODE CONTROLS ALL ELEMENTS WITH THE CLASS OF "RESET", and WHAT HAPPENS WHEN THEY ARE CLICKED
 
       $('.reset').click(function() { // hey jQuery, get elements with the class of "reset", and on click do the following:
-        player = 1; // declare a variable named player and set its value to 1 (resents player count, starting with 1)
-        messages.html(''); // on the messages object, point to the html and set it to an empty string (the user sees no value next to "turn")
+        player = 1; // declare a variable named player and set its value to 1 (==>resets player count, starting with 1)
+        messages.html(''); // on the messages object, point to the html and set it to an empty string (==>the user sees no value next to "turn")
         reset(board); // run the reset function, using the board variable as the only argument (pass in board to the function 'reset')
         displayNextPlayer(turn, player); // run the displayNextPlayer function with 2 arguments: turn, player
       });
@@ -97,7 +74,7 @@ created new variable to be able to select individual boxes (var = anyBox)
       }
     }
 
-    function changeState(anyBox, pattern) { // declare a function called "changeState" and set it open to taking 2 variables as its arguments: anyBox, pattern
+    function changeState(anyBox, pattern) { // declare a function called "changeState", set 2 variables as its arguments: anyBox, pattern
       return anyBox.addClass(pattern); // return: on the anyBox object, add the class specified by the pattern variable
     }
 
@@ -151,62 +128,68 @@ created new variable to be able to select individual boxes (var = anyBox)
       }); // all elements on board will be cleared of all circle or cross classes
     }
 
-// set values of all id's (or all values w/in board?) to null
-// true or false: existNullPlayingSpaces?
-    // if F ===> function gameIsOver. If hasWinner, alert userSymbol "has won". Else, alert ("no winner this time, click reset to try again")
-    // if T ===>
-
-    // listen on the #board for an event: click USE jQuery
-    // true or false: click event has happened on #board
-        // F ===> loop again through algorithm
-        // T ===> on click :
-              // 1. GET the #id of event parent (?)
-              // 2. IF userSymbol is equal to X, SET contents of div #id with X; ELSE, SET contents of div #id with O
-              // 3. console.log("Great play. Who goes next?")
-
-
-              /*
-                  function hasBeenClicked(event) {
-                      //  THIS NEEDS TO BE CHANGED: for ( $('#top-row')on('click', )  )
-                      $("#upper-left").html("I've been clicked!");  // on the "#divName", change the innerHTML (what the user sees) to "I've been clicked"
-                      $("#upper-center").html("I've been clicked!");
-                      $("#upper-right").html("I've been clicked!");
-                      $("#center-left").html("I've been clicked!");
-                      $("#center-center").html("I've been clicked!");
-                      $("#center-right").html("I've been clicked!");
-                      $("#bottom-left").html("I've been clicked!");
-                      $("#bottom-center").html("I've been clicked!");
-                      $("#bottom-right").html("I've been clicked!");
-                      console.log("I've been clicked.")
-                      alert("I've been clicked!");
-                  }
 
 
 
+    /*
+    // wait for the DOM to finish loading
+    $(document).ready(function() {
+      // all code to manipulate the DOM
+      // goes inside this function
+
+        // print to console that app.js is connected successfully
+        console.log("sanity check: app.js is connected! phew.");
+
+        // GET all divs with the class of col-xs-4 and set the inner HTML to "BLANK"
+        $(  "div[class='col-xs-4 box']"  ).html("BLANK")
+        console.log("inner html of ALL boxes on playing board = blank");
+
+
+        // ALERT the player that the game is ready to begin
+        alert("Click on any blank box to start your game.");
+        console.log("User has been prompted to click anywhere to start the game");
+
+        // LISTEN for a click to happen on any of the divs with class col-xs-4; and on CLICK, do something
+        $(  "div[class='col-xs-4 box']"  ).on('click').addClass('.isClicked');
+
+        $('.isClicked').html("I've been clicked!");
+
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+        // set values of all id's (or all values w/in board?) to ""
+        // true or false: existEmptyPlayingSpaces?
+            // if F ===> function gameIsOver. If hasWinner, alert userSymbol "has won". Else, alert ("no winner this time, click reset to try again")
+            // if T ===>
+
+            // listen on the #board for an event: click USE jQuery
+            // true or false: click event has happened on #board
+                // F ===> loop again through algorithm
+                // T ===> on click :
+                      // 1. GET the #id of event parent (?)
+                      // 2. IF userSymbol is equal to X, SET contents of div #id with X; ELSE, SET contents of div #id with O
+                      // 3. console.log("Great play. Who goes next?")
+
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+        /*
+
+                      var boardArea = $('#upper-left');
+                      // #upper-center upper-right center-left center-center center-right bottom-left bottom-center bottom-right');
+
+                      boardArea.on('click', hasBeenClicked);
 
 
 
-              var boardArea = $('#upper-left');
-              // #upper-center upper-right center-left center-center center-right bottom-left bottom-center bottom-right');
+                      $( "div.col-xs-4 box" ).html(function() {
+                        var isSetToX = "<em>" + $( "p" ).length + " paragraphs!</em>";
+                        return "<p>All new content for " + emphasis + "</p>";
+                      });
 
-              boardArea.on('click', hasBeenClicked);
+                      function addClassOfIsclicked() {
+                          $('div').on('click', function(){
+                              $('col-xs-4 box').addClass('.isClicked');
+                              addClassOfIsClicked();
+                          });
+                      });
 
-
-
-
-
-              $( "div.col-xs-4 box" ).html(function() {
-                var isSetToX = "<em>" + $( "p" ).length + " paragraphs!</em>";
-                return "<p>All new content for " + emphasis + "</p>";
-              });
-
-              function addClassOfIsclicked() {
-                  $('div').on('click', function(){
-                      $('col-xs-4 box').addClass('.isClicked');
-                      addClassOfIsClicked();
-                  });
-              });
-
-
-
-                */
+        */

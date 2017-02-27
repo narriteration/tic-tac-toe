@@ -14,15 +14,16 @@ div.col-xs-4 {
     height:50px;
     border:1px solid #555;
     cursor:pointer;
+}
 
 .cross:before {
-    content:"x";
-    color:lightblue;
-    }
+        content:"x";
+        color:red;
+      }
 
 .circle:before {
     content:"o";
-    color:pink;
+    color:purple;
     }
   }
 
@@ -51,5 +52,5 @@ table {
     }
   }
 
-  
+
 */
