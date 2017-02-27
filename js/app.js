@@ -8,33 +8,32 @@
       var turn = $('.turn'); //
       var anyBox = $('.col-xs-4');
 
+      displayNextPlayer(turn, player);
+
+
 /*
-NOTES TO SELF:
+TODO for Chelsea:
+- understand $(this) more fully - concept and applications
+- how to think through code from most broad to most specific, using placeholders
+- practice with creating functions with arguments: naming those arguments, assessing number of arguments, and when to leave function empty () vs. call arguments!
 
-replaced $('table') with $('#board') ?
-
-replaced turn with isTurn
-replaced table with board
-replaced $('td') with $('.col-cs-4')
-created new variable to be able to select individual boxes (var = anyBox)
 */
 
-      displayNextPlayer(turn, player);
 
 // THIS CHUNK OF CODE CONTROLS WHAT HAPPENS ON CLICK OF ANY BOX ON THE GAME BOARD
 
       $('.col-xs-4').click(function() { // hey jQuery, point to elements with the class of 'col-xs-4'. on click, run the function below:
-        anyBox = $(this); // using jQuery point to THIS, and set THIS in jQuery as the value of javascript variable named anyBox TODO: lookup this in jQuery
+        anyBox = $(this); // using jQuery point to THIS, and set THIS in jQuery as the value of javascript variable named anyBox
         var state = getState(anyBox); // create and set the value of state variable to the getState function, with 'anyBox' as the single argument
         if(!state) { // if NOT state (i.e. state === False) then do the following:
             var pattern = definePatternForCurrentPlayer(player); // create and set a variable called pattern to the function of "definePatternForCurrentPlayer" with "player" as the single argument
-            changeState(anyBox, pattern); // call function "changeState" with 2 arguments (parameters?): TODO: LOOKUP!
-            if(checkIfPlayerWon(board, pattern)) { // if the function of "checkIfPlayerWon" on elements with the #board id, and patter TODO: LOOKUP what second argument does/means in this if statement
+            changeState(anyBox, pattern); // call function "changeState" with 2 arguments: anyBox, and pattern
+            if(checkIfPlayerWon(board, pattern)) { // if the function of "checkIfPlayerWon" on elements with the #board id, and patter
                 messages.html('Player ' + player + ' has won.'); // on the messeges element, get the html and set to the contents of the parenthesis, this will display on the board for the players.
                 turn.html(''); // on the turn element (object?), set the html to an empty string. This will display on the board for the players
             } else { // ELSE (checkIfPlayerWon is FALSE), then do the following:
                 player = setNextPlayer(player); // update value of player variable using the function setNextPlayer (of player)
-                displayNextPlayer(turn, player); // and run the function "displayNextPlayer", passing in the turn and player variables TODO: is this the right translation?
+                displayNextPlayer(turn, player); // and run the function "displayNextPlayer", passing in the turn and player variables TODO: ? is this the right translation?
             }
         } else { // ELSE (if state === true to begin with), then do the following:
           messages.html('Sorry charlie, this box is already played.'); // on the messages object, set the (inner) HTML to the string specified in the parenthesis
@@ -132,6 +131,9 @@ created new variable to be able to select individual boxes (var = anyBox)
 
 
     /*
+
+    OLD CODE USING DIFF APPROACHES:
+
     // wait for the DOM to finish loading
     $(document).ready(function() {
       // all code to manipulate the DOM
@@ -170,8 +172,6 @@ created new variable to be able to select individual boxes (var = anyBox)
                       // 3. console.log("Great play. Who goes next?")
 
     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-        /*
 
                       var boardArea = $('#upper-left');
                       // #upper-center upper-right center-left center-center center-right bottom-left bottom-center bottom-right');
