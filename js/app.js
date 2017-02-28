@@ -1,9 +1,10 @@
 
-
+//indentation is weird
     $(document).ready(function() {
 
+      //a minor thing at this point, but learn how to use atom-beautify to autoindent your code :)
       var player = 1;
-        var board = $('#board');
+      var board = $('#board');
       var messages = $('.messages');
       var turn = $('.turn'); //
       var anyBox = $('.col-xs-4');
@@ -11,7 +12,7 @@
       displayNextPlayer(turn, player);
 
 
-/*
+/* awesome! you wrote a todo for yourself! I like this
 TODO for Chelsea:
 - understand $(this) more fully - concept and applications
 - how to think through code from most broad to most specific, using placeholders
@@ -64,7 +65,7 @@ TODO for Chelsea:
 - reset
 */
 
-
+    //thanks for having good function and variable names!!
     function getState(anyBox) { // declare a function called getState, it has one argument called anyBox
       if(anyBox.hasClass('cross') || anyBox.hasClass('circle')) { // IF one of the following === true, go to the next line:
         return 1; // for TRUE (box has a class of one of the players symbols), return 1 to the function's value
@@ -101,6 +102,7 @@ TODO for Chelsea:
 
       var won = 0; // declare a variable named won and set its value equal to 0
 
+      //yep, this way to do it definitely makes sense.
       if(board.find('#box1').hasClass(pattern) && board.find('#box2').hasClass(pattern) && board.find('#box3').hasClass(pattern)) {
         won = 1;
       } else if (board.find('#box1').hasClass(pattern) && board.find('#box4').hasClass(pattern) && board.find('#box7').hasClass(pattern)) {
@@ -130,7 +132,7 @@ TODO for Chelsea:
 
 
 
-    /*
+    /* I'd recommend removing unused code, you can still see it in your commit history online if you want
 
     OLD CODE USING DIFF APPROACHES:
 
